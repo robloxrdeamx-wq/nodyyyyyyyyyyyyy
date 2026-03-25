@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>❤️</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+background:black;
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+/* Intro */
+#intro{
+position:absolute;
+font-size:30px;
+animation:fadeIn 3s forwards;
+}
+
+@keyframes fadeIn{
+0%{opacity:0; transform:scale(0.8);}
+100%{opacity:1; transform:scale(1);}
+}
+
+/* قلوب */
+.heart{
+position:absolute;
+color:#ff66cc;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+/* لوجين */
+#login{
+display:none;
+background:white;
+color:black;
+padding:30px;
+border-radius:20px;
+}
+
+/* كارد */
+.card{
+display:none;
+background:white;
+color:black;
+width:330px;
+border-radius:25px;
+padding:20px;
+box-shadow:0 0 40px #ff66cc;
+}
+
+h2{
+color:#ff3399;
+}
+
+#name{
+font-size:22px;
+color:#ff66cc;
+}
+
+#text{
+min-height:80px;
+}
+
+/* صورة */
+.gallery{
+display:none;
+}
+.gallery img{
+width:130px;
+border-radius:15px;
+}
+
+/* زرار */
+button{
+padding:10px;
+border:none;
+border-radius:10px;
+background:#ff3399;
+color:white;
+cursor:pointer;
+margin-top:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Intro -->
+<div id="intro">💖 Just For You 💖</div>
+
+<!-- Login -->
+<div id="login">
+<h2>Enter Password ❤️</h2>
+<input type="password" id="pass">
+<br>
+<button onclick="check()">Login</button>
+</div>
+
+<!-- Card -->
+<div class="card" id="card">
+
+<div id="name">❤️ Nada ❤️</div>
+
+<div id="text"></div>
+
+<button onclick="start()">ابدأ الذكريات 💌</button>
+
+<div id="counter"></div>
+
+<div class="gallery" id="gallery">
+<img src="love.jpg">
+</div>
+
+</div>
+
+<script>
+
+/* intro */
+setTimeout(()=>{
+intro.style.display="none";
+login.style.display="block";
+},3000);
+
+/* باسورد */
+function check(){
+if(pass.value==="Dodo"){
+login.style.display="none";
+card.style.display="block";
+}
+}
+
+/* الرسالة */
+let msg=`كل سنة وانتي طيبة يا أجمل حاجة في حياتي ❤️
+أنا مش مصدق إننا مع بعض لحد دلوقتي 😍
+أنا بعشقك ومش بحبك بس ربنا يخليكي ليا و نفضل لي بعض العمر كلو 💖`;
+
+let i=0;
+
+/* تشغيل */
+function start(){
+
+// 🔥 يفتح الأغنية بتاعتك
+window.open("https://youtu.be/fGFB29lQ-Vs","_blank");
+
+// كتابة
+typing();
+}
+
+/* كتابة */
+function typing(){
+if(i < msg.length){
+text.innerHTML += msg.charAt(i);
+i++;
+setTimeout(typing,40);
+}else{
+gallery.style.display="block";
+}
+}
+
+/* عداد */
+let startDate=new Date("2025-12-10");
+
+setInterval(()=>{
+let now=new Date();
+let diff=now-startDate;
+
+let d=Math.floor(diff/(1000*60*60*24));
+let h=Math.floor(diff/(1000*60*60))%24;
+
+counter.innerHTML=`💖 بقالنا ${d} يوم و ${h} ساعة`;
+},1000);
+
+/* قلوب */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💗";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+10)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},200);
+
+</script>
+
+</body>
+</html>
